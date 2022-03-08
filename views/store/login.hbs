@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> head}}
+
+<body>
+    {{> navbar}}
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                {{> message}}
+                <form action="/sign-in" method="post" id="login">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Login</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+                            </div>
+                            <button type="submit" class="btn btn-block btn-primary">Sign in</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+    <script src="/js/validator-user.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> head}}
+
+<body>
+    {{> navbar}}
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                {{> message}}
+                <form action="/profile/update" method="post" enctype="multipart/form-data" id="editUser">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Profile</h5>
+                        </div>
+                        <div class="card-body">
+                            <input type="hidden" name="id" value="{{ user._id }}">
+                            <div class="form-group">
+                                <label for="fullname">Fullname <span class="text-danger">(*)</span></label>
+                                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Fullname" value="{{ user.fullname }}">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email <span class="text-danger">(*)</span></label>
+                                        <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email" value="{{ user.email }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phone">Phone <span class="text-danger">(*)</span></label>
+                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Phone" value="{{ user.phone }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password <span class="text-danger">(*)</span></label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="password2">Confirm Password <span class="text-danger">(*)</span></label>
+                                <input type="password" class="form-control" id="password2" name="password2" placeholder="Enter Confirm Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address <span class="text-danger">(*)</span></label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" value="{{ user.address }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Image</label>
+                                <input class="form-control-file" type="file" id="image" name="image">
+                            </div>
+                            <button type="submit" class="btn btn-block btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+    <script src="/js/validator-user.js"></script>
+</body>
+</html>

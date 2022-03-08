@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> head}}
+
+<body>
+    {{> navbar}}
+    
+    <div class="container">
+        <div class="mt-3 text-center">
+            <h3>Purchase history</h3>
+        </div>
+        {{> message}}
+        <hr class="pb-3">
+
+        {{#each orders}}
+            <p class="">Order ID: {{ _id }}</p>
+            <table class="table table-sm table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Product</th>
+                        <th style="width: 15%">Quantity</th>
+                        <th style="width: 20%">Price</th>
+                        <th style="width: 20%">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each items}}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ quantity }}</td>
+                        <td>{{ price }} VND</td>
+                        <td>{{ multiplication quantity price }} VND</td>
+                    </tr>
+                    {{/each}}
+                    <tr>
+                        <td colspan="1"><span class="font-weight-bold">Order date: {{ createAt }}</span></td>
+                        <td colspan="3"><span class="font-weight-bold">Address: {{ address }}</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"><span class="text-danger font-weight-bold">Total price: {{ totalPrice }} VND</span></td>
+                        <td colspan="2"><span class="text-primary font-weight-bold">Status: {{ status }}</span></td>
+                        <td colspan="1">
+                            {{#if (showCancelOrderButton status) }}
+                                <a href="order/cancel/{{ _id }}" class="btn btn-block btn-sm btn-danger float-right">Cancel order</a>
+                            {{/if}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr class="pb-4">
+        {{/each}}
+    </div>
+</body>
+</html>

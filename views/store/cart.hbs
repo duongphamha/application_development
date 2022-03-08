@@ -1,0 +1,65 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+{{> head}}
+
+<body>
+    {{> navbar}}
+
+    <div class="container mt-3">
+        <h3>Shopping cart</h3>
+        {{> message}}
+        {{#if products}}
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th style="width: 10%;">Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each products}}
+                    <tr>
+                        <td>{{ this.item.name }}</td>
+                        <td>{{ this.price }} VND</td>
+                        <td>
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                    <a href="/cart/decrease/{{ this.item._id }}" class="btn btn-outline-secondary" type="button">-</a>
+                                </div>
+                                <input type="text" class="form-control border-secondary" value="{{ this.qty }}" style="text-align:center;">
+                                <div class="input-group-append">
+                                    <a href="/cart/increase/{{ this.item._id }}" class="btn btn-outline-secondary" type="button">+</a>
+                                </div>
+                            </div>
+
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" href="/cart/remove/{{ this.item._id }}">Delete</a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <strong>Total: {{ totalPrice }} VND</strong>
+                    </div>
+                <div class="col-md-4">
+                    <a href="/checkout-form" class="btn btn-success float-right">Checkout</a>
+                </div>
+            </div>
+
+        {{else}}
+            <div>
+                <h5 class="text-danger">Oops, your cart is empty</h5>
+            </div>
+        {{/if}}
+    </div>
+</body>
+</html>

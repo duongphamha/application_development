@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> head}}
+
+<body>
+    {{> navbar}}
+
+    <div class="container mt-3">
+        {{> message}}
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-inline mb-3" action="/search" method="get">
+                <label class="font-weight-bold pr-4">Search:</label>
+                    <div class="form-group mr-4">
+                        <label for="name" class="mr-2">Product name</label>
+                        <input class="form-control" placeholder="Product name" name="name" value="{{ name }}">
+                    </div>
+                    <div class="form-group mr-4">
+                        <label for="gte" class="mr-2">Min</label>
+                        <input type="number" class="form-control" id="gte" name="gte" placeholder="Price min" value="{{ gte }}">
+                    </div>
+
+                    <div class="form-group mr-4">
+                        <label for="lte" class="mr-2">Max</label>
+                        <input type="number" class="form-control" id="lte" name="lte" placeholder="Price max" value="{{ lte }}">
+                    </div>
+
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            {{#each products}}
+                <div class="col-3 mt-3">
+                    <div class="card">
+                        <img src="/uploads/product/{{ image }}" class="card-img-top" style="height: 200px;">
+                        <div class="card-body">
+                            <a href="#" class="card-title h6 text-dark">{{ name }}</a>
+                            {{#if (showNewProduct createAt) }}
+                                <span class="badge badge-success">New</span>
+                            {{/if}}
+
+                            {{#if isHot }}
+                                <span class="badge badge-danger">Hot</span>
+                            {{/if}}
+                            <p class="card-text">{{ price }} VND</p>
+                            <a href="/cart/add-to-cart/{{ _id }}" class="btn btn-block btn-outline-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</body>
+</html>

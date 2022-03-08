@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> head}}
+
+<body class="sb-nav-fixed">
+    {{> navbar}}
+
+    <div class="container mt-3">
+        {{> message}}
+        <div>
+            <form class="form-inline float-left mb-3" action="/admin/product/search" method="get">
+                <input class="form-control" placeholder="Search by product name..." name="search" value="{{ search }}">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <a href="/admin/product/add" class="btn btn-primary float-right mb-3">Add product</a>
+        </div>
+        <table class="table table-sm table-bordered">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <td><img src="/uploads/product/{{ image }}" alt="" style="height: 75px;"></td>
+                    <td>{{ name }}</td>
+                    <td>{{ price }} VND</td>
+                    <td>{{ quantity }}</td>
+                    <td>
+                        <a href="/admin/product/edit?id={{_id}}" class="btn btn-sm btn-success">Edit</a>
+                        <a href="/admin/delete-product?id={{_id}}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure')">Delete</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

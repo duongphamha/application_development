@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> head}}
+
+<body class="sb-nav-fixed">
+    {{> navbar}}
+    
+    <div class="container">
+        {{> message}}
+        <form action="/admin/order/list" method="get"  class="form-inline my-3">
+            <div class="form-group mr-4">
+                <label for="from" class="mr-2">From</label>
+                <input type="date" class="form-control" id="from" name="from">
+            </div>
+
+            <div class="form-group mr-4">
+                <label for="to" class="mr-2">To</label>
+                <input type="date" class="form-control" id="to" name="to">
+            </div>
+            <button class="btn btn-primary" type="submit">View</button>
+        </form>
+
+        <table class="table table-sm table-bordered">
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Total price</th>
+                    <th>Order date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each orders}}
+                <tr>
+                    <td>{{ fullname }}</td>
+                    <td>{{ totalPrice }}</td>
+                    <td>{{ createAt }}</td>
+                    <td>{{ status }}</td>
+                    <td>
+                        <a href="/admin/order/show/{{_id}}" class="btn btn-sm btn-success">Show</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
