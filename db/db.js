@@ -5,7 +5,7 @@ try {
         useNewUrlParser: true,
         // useFindAndModify: true
     })
-    console.log("connected")
+    console.log("Database connected")
 } catch (e) {
     console.log(e)
 }

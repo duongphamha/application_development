@@ -34,10 +34,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 hbs.registerPartials(__dirname + '/views/partials/');
 app.use(express.static(__dirname + '/public'));
 
-// ===== Routes =====
-
 app.get('/', function(req, res) {
-    res.send('<h1>Hello world</h1>');
+    if (req.session.user && req.session.user.role == 0)
+        return res.redirect('/admin/product/list');
+    else {
+        return res.redirect('/home');
+    }
 })
 
 const productRoute = require("./routes/product");
@@ -96,8 +98,8 @@ hbs.registerHelper('showNewProduct', (date) => {
     return (d1.getFullYear() == d2.getFullYear()) && (d1.getMonth() == d2.getMonth()) && (d1.getDate() == d2.getDate());
 });
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, function() {
-    console.log('listening on port ' + PORT);
+    console.log('Listening on port ' + PORT);
 });
